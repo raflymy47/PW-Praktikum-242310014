@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan-7 Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            width: 400px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="radio"] {
+            width: auto;
+        }
+
+        .gender {
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn input {
+            width: 48%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .save {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .clear {
+            background-color: #f44336;
+            color: white;
+        }
+
+        .save:hover {
+            background-color: #45a049;
+        }
+
+        .clear:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Form Data Diri</h2>
+
+    <form>
+
+        <label>NPM:</label>
+        <input type="text" name="npm">
+
+        <label>Fullname:</label>
+        <input type="text" name="fullname">
+
+        <label>Email:</label>
+        <input type="email" name="email">
+
+        <label>Password:</label>
+        <input type="password" name="password">
+
+        <label>Place Birth:</label>
+        <input type="text" name="place_birth">
+
+        <label>Birthdate:</label>
+        <input type="date" name="birthdate">
+
+        <label>Gender:</label>
+        <div class="gender">
+            <input type="radio" name="gender"> Male
+            <input type="radio" name="gender"> Female
+        </div>
+
+        <label>Address:</label>
+        <textarea name="address" rows="4"></textarea>
+
+        <div class="btn">
+            <input type="submit" value="Save" class="save">
+            <input type="reset" value="Clear" class="clear">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

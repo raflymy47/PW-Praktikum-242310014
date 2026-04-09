@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <!-- HUBUNGKAN CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+    <div class="hero-content">
+        <h1>Hi, I'm Raff 👋</h1>
+        <p>IT Student | Web Developer | Tech Enthusiast</p>
+        <a href="#about" class="btn">Explore</a>
+    </div>
+</header>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- ABOUT -->
+<section id="about" class="section fade-in">
+    <h2>About Me</h2>
+    <p>I am passionate about building modern web applications and learning new technologies.</p>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section fade-in">
+    <h2>Skills</h2>
+    <div class="cards">
+        <div class="card">HTML</div>
+        <div class="card">CSS</div>
+        <div class="card">JavaScript</div>
+        <div class="card">Networking</div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section fade-in">
+    <h2>Projects</h2>
+    <div class="cards">
+        <div class="card">Portfolio Website</div>
+        <div class="card">Simple Social Media App</div>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section fade-in">
+    <h2>Contact</h2>
+    <p>Email: raff@email.com</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 Raff Portfolio</p>
+</footer>
+
+<!-- SCRIPT ANIMASI -->
+<script>
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = { threshold: 0.3 };
+
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('appear');
+            observer.unobserve(entry.target);
+        });
+    }, appearOptions);
+
+    faders.forEach(fader => {
+        appearOnScroll.observe(fader);
+    });
+</script>
+
+</body>
+</html>
