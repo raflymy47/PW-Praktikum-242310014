@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 2 - Travel</title>
+</head>
+
+<body>
+
+<h1>Travel IBIK Abadi</h1>
+
+<form name="fform">
+<pre>
+Nama        : <input type="text" name="nama">
+
+Tujuan      :
+<select name="tujuan">
+    <option value="jakarta">Jakarta</option>
+    <option value="solo">Solo</option>
+    <option value="surabaya">Surabaya</option>
+</select>
+
+Kelas       :
+<select name="kelas">
+    <option value="eksekutif">Eksekutif</option>
+    <option value="bisnis">Bisnis</option>
+    <option value="ekonomi">Ekonomi</option>
+</select>
+
+Jumlah Tiket: <input type="text" name="jumlah">
+
+Member :
+<input type="checkbox" name="member">Ya
+</pre>
+
+<input type="button" value="Hitung" onclick="hitung()">
+
+<h3>Output:</h3>
+<pre>
+Harga Tiket : <input type="text" name="harga">
+Subtotal    : <input type="text" name="subtotal">
+Diskon      : <input type="text" name="diskon">
+Total Bayar : <input type="text" name="total">
+</pre>
+
+</form>
+
+<script>
+function hitung(){
+    var f = document.fform;
+    var harga = 0;
+
+    // harga
+    if(f.tujuan.value=="jakarta"){
+        if(f.kelas.value=="eksekutif") harga=70000;
+        if(f.kelas.value=="bisnis") harga=40000;
+        if(f.kelas.value=="ekonomi") harga=10000;
+    }
+    if(f.tujuan.value=="solo"){
+        if(f.kelas.value=="eksekutif") harga=80000;
+        if(f.kelas.value=="bisnis") harga=50000;
+        if(f.kelas.value=="ekonomi") harga=20000;
+    }
+    if(f.tujuan.value=="surabaya"){
+        if(f.kelas.value=="eksekutif") harga=90000;
+        if(f.kelas.value=="bisnis") harga=60000;
+        if(f.kelas.value=="ekonomi") harga=30000;
+    }
+
+    var jumlah = parseInt(f.jumlah.value);
+    var subtotal = harga * jumlah;
+
+    var diskon = f.member.checked ? subtotal * 0.1 : 0;
+    var total = subtotal - diskon;
+
+    f.harga.value = harga;
+    f.subtotal.value = subtotal;
+    f.diskon.value = diskon;
+    f.total.value = total;
+}
+</script>
+
+</body>
+</html>

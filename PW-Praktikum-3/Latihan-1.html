@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 1 - Data Mahasiswa</title>
+</head>
+
+<body>
+
+<h1>Form Data Mahasiswa</h1>
+
+<form name="fform">
+<pre>
+NIM             : <input type="text" name="nim">
+Nama            : <input type="text" name="nama">
+
+Jenis Kelamin   :
+<input type="radio" name="jk" value="Laki-laki">Laki-laki
+<input type="radio" name="jk" value="Perempuan">Perempuan
+
+Agama           :
+<select name="agama">
+    <option>Islam</option>
+    <option>Kristen</option>
+    <option>Hindu</option>
+    <option>Budha</option>
+</select>
+
+Status          :
+<input type="checkbox" name="status" value="Mahasiswa">Mahasiswa
+
+Jurusan         :
+<select name="jurusan">
+    <option>Teknologi Informasi</option>
+    <option>Pariwisata</option>
+</select>
+
+Komentar        :
+<textarea name="komentar"></textarea>
+</pre>
+
+<input type="button" value="KIRIM" onclick="kirim()">
+<input type="reset" value="ULANG">
+
+<h3>Output:</h3>
+<pre>
+NIM     : <input type="text" name="onim">
+Nama    : <input type="text" name="onama">
+JK      : <input type="text" name="ojk">
+Agama   : <input type="text" name="oagama">
+Status  : <input type="text" name="ostatus">
+Jurusan : <input type="text" name="ojurusan">
+Komentar: <textarea name="okomentar"></textarea>
+</pre>
+
+</form>
+
+<script>
+function kirim(){
+    var f = document.fform;
+
+    f.onim.value = f.nim.value;
+    f.onama.value = f.nama.value;
+
+    if(f.jk[0].checked) f.ojk.value = f.jk[0].value;
+    if(f.jk[1].checked) f.ojk.value = f.jk[1].value;
+
+    f.oagama.value = f.agama.value;
+    f.ostatus.value = f.status.checked ? "Mahasiswa" : "Bukan";
+    f.ojurusan.value = f.jurusan.value;
+    f.okomentar.value = f.komentar.value;
+}
+</script>
+
+</body>
+</html>

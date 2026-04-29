@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 4 - Tabungan</title>
+</head>
+
+<body>
+
+<h1>Perhitungan Tabungan</h1>
+
+<form name="fform">
+<pre>
+Saldo Awal : <input type="text" name="saldo" value="100000">
+Bunga (%)  : <input type="text" name="bunga" value="10">
+Waktu      : <input type="text" name="waktu" value="3">
+</pre>
+
+<input type="button" value="Hitung" onclick="hitung()">
+
+<h3>Hasil:</h3>
+<textarea name="hasil" rows="10" cols="40"></textarea>
+
+</form>
+
+<script>
+function hitung(){
+    var f = document.fform;
+
+    var saldo = parseFloat(f.saldo.value);
+    var bunga = parseFloat(f.bunga.value) / 100;
+    var waktu = parseInt(f.waktu.value);
+
+    var hasil = "";
+
+    for(var i=1; i<=waktu; i++){
+        saldo = saldo + (saldo * bunga);
+        hasil += "Saldo Bulan " + i + " = Rp. " + saldo + "\n";
+    }
+
+    f.hasil.value = hasil;
+}
+</script>
+
+</body>
+</html>

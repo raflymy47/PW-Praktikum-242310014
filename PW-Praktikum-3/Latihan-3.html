@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Latihan 3</title>
+</head>
+
+<body>
+
+<h2>Faktorial & Deret</h2>
+
+<form name="fform">
+    N = <input type="text" name="nilai"><br><br>
+
+    <input type="button" value="Hitung" onclick="hitung()"><br><br>
+
+    Faktorial : <input type="text" name="faktorial"><br><br>
+    Deret     : <input type="text" name="deret">
+</form>
+
+<script>
+function hitung(){
+    var n = parseInt(document.fform.nilai.value);
+
+    if(isNaN(n)){
+        alert("Masukkan angka!");
+        return;
+    }
+
+    var faktorial = 1;
+    var deret = 0;
+
+    for(var i=1; i<=n; i++){
+        faktorial *= i;
+        deret += i;
+    }
+
+    document.fform.faktorial.value = faktorial;
+    document.fform.deret.value = deret;
+}
+</script>
+
+</body>
+</html>
