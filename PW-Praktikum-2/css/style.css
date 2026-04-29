@@ -1,19 +1,35 @@
+/* =========================
+   GLOBAL
+========================= */
 body {
     font-family: Arial;
     margin: 20px;
 }
 
-.container {
+/* =========================
+   LATIHAN 1
+========================= */
+.latihan1 {
+    display: flex;
+    gap: 20px;
     border: 1px solid black;
     padding: 10px;
 }
 
-h1 {
+.latihan1 .left {
+    width: 70%;
+}
+
+.latihan1 .right {
+    width: 30%;
+}
+
+.latihan1 h1 {
     font-size: 20px;
     margin: 0;
 }
 
-.meta {
+.latihan1 .meta {
     font-size: 12px;
     border-top: 1px solid black;
     border-bottom: 1px solid black;
@@ -21,56 +37,59 @@ h1 {
     margin-bottom: 10px;
 }
 
-img {
-    display: block;
-    margin: auto;
-    width: 300px;
+.latihan1 .content-flex {
+    display: flex;
+    gap: 15px;
 }
 
-p {
+.latihan1 .foto1 {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.latihan1 p {
     text-align: justify;
     font-size: 14px;
 }
 
-.highlight {
-    background-color: lightgreen;
+.latihan1 .highlight {
+    background: lightgreen;
+    padding: 5px;
 }
 
-.highlight-blue {
-    background-color: lightblue;
+.latihan1 .highlight-blue {
+    background: lightblue;
+    padding: 5px;
 }
 
-table {
-    border-collapse: collapse;
+.latihan1 table {
     width: 100%;
+    border-collapse: collapse;
     margin-top: 10px;
 }
 
-table, th, td {
+.latihan1 table, 
+.latihan1 th, 
+.latihan1 td {
     border: 1px solid black;
     padding: 5px;
     text-align: center;
 }
 
-.box {
+.latihan1 .box {
     border: 1px solid black;
     padding: 10px;
-    margin-top: 10px;
 }
 
-.symbol {
-    background-color: yellow;
+.latihan1 .symbol {
+    background: yellow;
     display: inline-block;
     padding: 10px;
     font-size: 20px;
-    margin-right: 10px;
 }
 
-.footer {
-    margin-top: 10px;
-}
-
-.social span {
+.latihan1 .social span {
     display: inline-block;
     width: 20px;
     height: 20px;
@@ -78,32 +97,12 @@ table, th, td {
     margin-right: 5px;
 }
 
-.fb { background: blue; }
-.tw { background: lightblue; }
-.ig { background: purple; }
-
-///Latihan 2
+.latihan1 .fb { background: blue; }
+.latihan1 .tw { background: lightblue; }
+.latihan1 .ig { background: purple; }
 
 /* =========================
-   GLOBAL
-========================= */
-body {
-    font-family: Arial;
-    margin: 20px;
-}
-
-/* =========================
-   JUDUL UTAMA
-========================= */
-h1 {
-    text-align: center;
-    border: 1px solid black;
-    padding: 10px;
-    color: darkblue;
-}
-
-/* =========================
-   CONTAINER (FLEX)
+   LATIHAN 2
 ========================= */
 .container {
     display: flex;
@@ -111,84 +110,37 @@ h1 {
     margin-top: 20px;
 }
 
-/* =========================
-   CARD
-========================= */
 .card {
     width: 33%;
     border: 1px solid black;
     padding: 10px;
 }
 
-/* Gambar */
 .card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
 }
 
-/* =========================
-   SUB JUDUL (KONSOL)
-========================= */
 .card h3 {
     text-align: center;
     margin-top: 10px;
-    color: darkred;
 }
 
-/* =========================
-   PARAGRAF
-========================= */
-p {
-    text-align: justify;
-    font-size: 14px;
-}
-
-/* Highlight */
 .highlight-blue {
     background-color: lightblue;
 }
 
 /* =========================
-   FOOTER
-========================= */
-footer {
-    text-align: center;
-    border-top: 1px solid black;
-    margin-top: 20px;
-    padding-top: 10px;
-}
-
-/* =========================
-   OPTIONAL (WARNA TIAP KONSOL)
-========================= */
-.card:nth-child(1) h3 {
-    color: blue; /* PS5 */
-}
-
-.card:nth-child(2) h3 {
-    color: green; /* Switch */
-}
-
-.card:nth-child(3) h3 {
-    color: darkgreen; /* Xbox */
-}
-
-
-
-/* =========================
    LATIHAN 3
 ========================= */
-
-/* HEADER */
 header {
     text-align: center;
     margin-bottom: 10px;
 }
 
-/* NAVBAR */
 nav {
-    background-color: black;
+    background: black;
     padding: 10px;
     text-align: center;
 }
@@ -197,108 +149,34 @@ nav a {
     color: white;
     margin: 10px;
     text-decoration: none;
+}
+
+nav a:hover {
+    background: gray;
     padding: 5px 10px;
 }
 
-/* Hover navbar */
-nav a:hover {
-    background-color: gray;
-}
-
-/* CONTAINER */
-.container {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-/* CARD ARTIKEL */
-.card {
-    width: 50%;
-    border: 1px solid black;
-    padding: 10px;
-    text-align: center;
-}
-
-/* GAMBAR */
-.card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-/* BUTTON */
 button {
     margin-top: 10px;
-    padding: 8px 12px;
-    border: none;
-    background-color: darkblue;
+    padding: 8px;
+    background: darkblue;
     color: white;
+    border: none;
     cursor: pointer;
 }
 
-/* Hover tombol */
 button:hover {
-    background-color: orange;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    margin-top: 20px;
-    border-top: 1px solid black;
-    padding-top: 10px;
-}
-
-
-
-/* =========================
-   GLOBAL
-========================= */
-body {
-    font-family: Arial;
-    margin: 20px;
+    background: orange;
 }
 
 /* =========================
-   HEADER
-========================= */
-header h1 {
-    text-align: center;
-    border: 1px solid black;
-    padding: 10px;
-    color: darkblue;
-}
-
-/* =========================
-   NAVBAR
-========================= */
-nav {
-    background-color: black;
-    padding: 10px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-    padding: 5px 10px;
-}
-
-nav a:hover {
-    background-color: gray;
-}
-
-/* =========================
-   LAYOUT
+   LATIHAN 4
 ========================= */
 .container-portfolio {
     display: flex;
     margin-top: 20px;
 }
 
-/* SIDEBAR */
 .sidebar {
     width: 30%;
     border: 1px solid black;
@@ -306,10 +184,9 @@ nav a:hover {
     text-align: center;
 }
 
-/* FOTO FIX 1:1 */
 .foto {
     width: 150px;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1/1;
     margin: auto;
     overflow: hidden;
 }
@@ -320,24 +197,12 @@ nav a:hover {
     object-fit: cover;
 }
 
-/* CONTENT */
 .content {
     width: 70%;
     border: 1px solid black;
     padding: 15px;
 }
 
-/* JUDUL SECTION */
-.content h2 {
-    color: darkblue;
-}
-
-/* LIST */
-.content ul {
-    padding-left: 20px;
-}
-
-/* FOOTER */
 footer {
     text-align: center;
     margin-top: 20px;
