@@ -1,6 +1,9 @@
 const db = require("../models");
 const User = db.User;
 
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+
 // ======================================
 // GET ALL USERS
 // ======================================
@@ -65,10 +68,12 @@ exports.createUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
 
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await User.create({
       name,
       email,
-      password,
+      password: hashedPassword,
     });
 
     res.status(201).json({
@@ -187,3 +192,80 @@ exports.deleteUser = async (req, res) => {
 
 
 
+// ======================================
+// LOGIN USER
+// ======================================
+
+exports.loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Validasi input
+    if (!email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and password are required",
+      });
+    }
+
+    // Cari user berdasarkan email
+    const user = await User.findOne({
+      where: { email },
+    });
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    // Cocokkan password
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      user.password
+    );
+
+    if (!isPasswordValid) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email or password",
+      });
+    }
+
+    // Data user yang dikirim ke client
+    const userResponse = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+    };
+
+    // Generate JWT
+    const expirationTime = Math.floor(Date.now() / 1000) + (6 * 60 * 60);
+
+    const accessToken = jwt.sign(
+      userResponse,
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "6h",
+      }
+    );
+
+    res.json({
+      success: true,
+      message: "Login successful",
+      data: userResponse,
+      accessToken,
+      expiresIn: expirationTime,
+    });
+
+  } catch (error) {
+    console.error("Error during login:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to login",
+      error: error.message,
+    });
+  }
+};

@@ -1,18 +1,33 @@
 "use client";
 
-import { useState } from "react";
-import { BookList } from "@/const/bookList";
+import { useEffect, useState } from "react";
+
+import {
+  GET_ALL_BOOK,
+  CREATE_BOOK,
+  UPDATE_BOOK,
+  DELETE_BOOK,
+} from "@/services/bookService";
+
 import FormBook from "@/components/cms/_books/form";
 
 export default function BooksPage() {
-  const [books, setBooks] = useState(BookList);
+  const [books, setBooks] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [search, setSearch] = useState("");
   const [editingBook, setEditingBook] = useState(null);
 
-  const deleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== id));
-  };
+  const deleteBook = async (id) => {
+  try {
+    if (!confirm("Yakin ingin menghapus buku ini?")) return;
+
+    await DELETE_BOOK(id);
+    await loadBooks();
+  } catch (error) {
+    console.error(error);
+    alert("Gagal menghapus buku");
+  }
+};
 
   const editBook = (book) => {
     setEditingBook(book);
@@ -22,6 +37,19 @@ export default function BooksPage() {
   const filteredBooks = books.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  useEffect(() => {
+  loadBooks();
+}, []);
+
+const loadBooks = async () => {
+  try {
+    const data = await GET_ALL_BOOK();
+    setBooks(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
   return (
     <>
@@ -179,42 +207,41 @@ export default function BooksPage() {
 
             <FormBook
               initialData={editingBook}
-              handleSave={(data) => {
-                if (editingBook) {
-                  const updatedBooks = books.map((book) =>
-                    book.id === editingBook.id
-                      ? {
-                          ...book,
-                          title: data.title,
-                          author: data.author,
-                          type: data.type,
-                          sinopsis: data.sinopsis,
-                          story: data.story,
-                        }
-                      : book
-                  );
+              handleSave={async (data) => {
+  try {
+    if (editingBook) {
+      await UPDATE_BOOK(editingBook.id, {
+        title: data.title,
+        author: data.author,
+        rating: editingBook.rating,
+        views: editingBook.views,
+        is_free: true,
+        language: editingBook.language,
+        sinopsis: data.sinopsis,
+        story: data.story,
+      });
+    } else {
+      await CREATE_BOOK({
+        title: data.title,
+        author: data.author,
+        rating: 0,
+        views: 0,
+        is_free: true,
+        language: "Indonesia",
+        sinopsis: data.sinopsis,
+        story: data.story,
+      });
+    }
 
-                  setBooks(updatedBooks);
-                  setEditingBook(null);
-                } else {
-                  const newBook = {
-                    id: books.length + 1,
-                    title: data.title,
-                    author: data.author,
-                    type: data.type,
-                    sinopsis: data.sinopsis,
-                    story: data.story,
-                    language: "id-ID",
-                    rating: 0,
-                    views: 0,
-                    subscribe: "No",
-                  };
+    await loadBooks();
 
-                  setBooks([...books, newBook]);
-                }
-
-                setShowForm(false);
-              }}
+    setShowForm(false);
+    setEditingBook(null);
+  } catch (error) {
+    console.error(error);
+    alert("Gagal menyimpan buku");
+  }
+}}
             />
           </div>
         </div>
